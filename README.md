@@ -19,6 +19,8 @@ controls="<%= s %>"><%= s %></a></li>](example.png)
 
 ## Installation
 
+This tool assumes the presence of the [EJS-Lint](https://github.com/RyanZim/EJS-Lint) CLI. Make sure EJS-Lint is installed globally in order to use this. (`npm install -g ejs-lint`)
+
 As long as the two files `ejshint.sh` and `do-ejshint.sh` are in the same directory, you can call `ejshint.sh` *in place of* the ejslint CLI. 
 
 I suggest putting them in your user root (`~/` in linux and creating an alias so that `ejshint` calls to the `ejshint.sh` file).
