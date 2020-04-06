@@ -1,0 +1,50 @@
+<%- include ('header') %>
+<div class="row mt-3">
+  <!-- Show user's name -->
+  <div class="col-4">
+    <h1 class="text-white">Hello, <%= user.casData.givenName %></h1>
+  </div>
+
+  <!-- Show user's subject menu -->
+  <div class="col-7">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <% if (user.uniqueSubjects) { %>
+      <% user.uniqueSubjects.forEach((s) => { %>
+      <li class="nav-item">
+        <a href="#<%== s %>" class="nav-link" data-toggle="tab" role="tab" id="<%= s %>-tab" aria-controls="<%= s %>"><%= s %></a></li>
+      <% }); %>
+      <% } %>
+    </ul>
+
+  </div> <!-- End of showing user's subject menu -->
+
+  <!-- Show log-out button -->
+  <div class="col-1">
+    <a href="/logout">
+      <button id="logout" type="button" class="btn btn-light btn-sm">
+        <span class="glyphicon glyphicon-log-out"></span>
+        Log out
+      </button>
+    </a>
+  </div>
+
+</div> <!-- End of top info row -->
+
+<!-- <div class="row"> -->
+  <div class="tab-content" id="myTabContent">
+    <% tabsCreated = []; %>
+    <% user.majorsData.forEach(m => { %>
+      <%- include('partials/subject-info', {subj: m}) %>
+      <% tabsCreated.push(m.name) %>
+    <% }); %>
+
+    <% user.coursesData.forEach(d => {%>
+      <% if (tabsCreated.indexOf(d.name) < 0) { // if not already printed subject details %> 
+        <%- include('partials/subject-info', {subj: d}) %>
+      <% } %>
+    <% }); %>
+  </div>
+<!-- </div> -->
+<%- include('partials/circulation', {data: user.sierraInfo}) %>
+<%- include ('footer') %>
